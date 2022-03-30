@@ -13,10 +13,10 @@ while (opcaoUsuario.ToUpper() != "X")
             Fornecedor.Salvar();
             break;
         case "2":
-            Fornecedor.Consultar();
+            Fornecedor.Listar();
             break;
         case "3":
-            Console.WriteLine("Escolha 3");
+            Fornecedor.Consultar();
             break;
 
         default:
@@ -34,6 +34,7 @@ static string ObterOpcaoUsuario()
 
     Console.WriteLine("1- Cadastrar Fornecedor");
     Console.WriteLine("2- Listar Fornecedores");
+    Console.WriteLine("3- Consultar Fornecedor");
     Console.WriteLine("X- Sair");
     Console.WriteLine();
 

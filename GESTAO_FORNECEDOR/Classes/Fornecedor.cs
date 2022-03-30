@@ -54,7 +54,7 @@ namespace GESTAO_FORNECEDOR
 			retorno += "Data de Cadastro: " + this.dtCadastro + Environment.NewLine;
 			retorno += "Razão Social: " + this.rzSocial + Environment.NewLine;
 			retorno += "Nome Fantasia: " + this.nmFantasia + Environment.NewLine;
-			retorno += "Disponibilidade:" + this.dispo + Environment.NewLine;
+			retorno += "Disponibilidade: " + this.dispo + Environment.NewLine;
 			retorno += "Distância em KM: " + this.distancia + Environment.NewLine;
 
 			return retorno;
@@ -88,7 +88,7 @@ namespace GESTAO_FORNECEDOR
 			Console.WriteLine("Informe a Distância em KM: ");
 			int entradaDistancia = int.Parse(Console.ReadLine());
 
-			Fornecedor novoFornecedor = new Fornecedor(id: repositorio.ProximoId(), isRascunho: true, email : entradaEmail, cnpj : entradaCNPJ, inscricaoEstadual : entradaEstadual, inscricaoMunicipal : entradaMunicipal, dtCadastro : entradaDTCadastro, rzSocial : entradaRzSocial, nmFantasia : entradaNmFantasia, dispo : true, distancia : entradaDistancia);
+			Fornecedor novoFornecedor = new Fornecedor(id: repositorio.ProximoId(), isRascunho: false, email : entradaEmail, cnpj : entradaCNPJ, inscricaoEstadual : entradaEstadual, inscricaoMunicipal : entradaMunicipal, dtCadastro : entradaDTCadastro, rzSocial : entradaRzSocial, nmFantasia : entradaNmFantasia, dispo : true, distancia : entradaDistancia);
 			repositorio.Insere(novoFornecedor);
 			Console.Clear();
 			Console.WriteLine("Fornecedor cadastrado com Sucesso! Retornando ao menu...");
@@ -102,8 +102,9 @@ namespace GESTAO_FORNECEDOR
 
 		}
 
-		public static void Consultar()
+		public static void Listar()
 		{
+			Console.Clear();
 			Console.WriteLine("Listar Fornecedores");
 
 			var lista = repositorio.Lista();
@@ -113,6 +114,16 @@ namespace GESTAO_FORNECEDOR
 				Console.WriteLine("#ID {0}: - CNPJ {1}", fornecedor.retornaId(), fornecedor.retornaCNPJ());
             }
 		}
+
+		public static void Consultar()
+        {
+			Console.Clear();
+			Console.WriteLine("Informe o ID do Fornecedor a ser consultado");
+			int idForn = int.Parse(Console.ReadLine());
+
+			var fornecedor = repositorio.RetornaPorId(idForn);
+			Console.WriteLine(fornecedor);
+        }
 
 		public string retornaCNPJ()
         {
