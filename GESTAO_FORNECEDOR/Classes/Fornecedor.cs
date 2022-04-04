@@ -7,7 +7,7 @@ namespace GESTAO_FORNECEDOR
 {
 	public class Fornecedor : EntidadeBase
 	{
-		static FornecedorRepositorio repositorio = new FornecedorRepositorio();
+		static FornecedorRepositorio fornecedor = new FornecedorRepositorio();
 		private bool isRascunho { get; set; }
 
 		private String email { get; set; }
@@ -61,7 +61,7 @@ namespace GESTAO_FORNECEDOR
         }
         public static void Salvar()
 		{
-			var lista = repositorio.Lista();
+			var lista = fornecedor.Lista();
 			Console.WriteLine("Inserir novo Fornecedor");
 
 			Console.WriteLine("Informe o Email: ");
@@ -88,8 +88,8 @@ namespace GESTAO_FORNECEDOR
 			Console.WriteLine("Informe a Distância em KM: ");
 			int entradaDistancia = int.Parse(Console.ReadLine());
 
-			Fornecedor novoFornecedor = new Fornecedor(id: repositorio.ProximoId(), isRascunho: false, email : entradaEmail, cnpj : entradaCNPJ, inscricaoEstadual : entradaEstadual, inscricaoMunicipal : entradaMunicipal, dtCadastro : entradaDTCadastro, rzSocial : entradaRzSocial, nmFantasia : entradaNmFantasia, dispo : true, distancia : entradaDistancia);
-			repositorio.Insere(novoFornecedor);
+			Fornecedor novoFornecedor = new Fornecedor(id: fornecedor.ProximoId(), isRascunho: false, email : entradaEmail, cnpj : entradaCNPJ, inscricaoEstadual : entradaEstadual, inscricaoMunicipal : entradaMunicipal, dtCadastro : entradaDTCadastro, rzSocial : entradaRzSocial, nmFantasia : entradaNmFantasia, dispo : true, distancia : entradaDistancia);
+			fornecedor.Insere(novoFornecedor);
 			Console.Clear();
 			Console.WriteLine("Fornecedor cadastrado com Sucesso! Retornando ao menu...");
 			System.Threading.Thread.Sleep(3000);
@@ -107,7 +107,7 @@ namespace GESTAO_FORNECEDOR
 			Console.Clear();
 			Console.WriteLine("Listar Fornecedores");
 
-			var lista = repositorio.Lista();
+			var lista = fornecedor.Lista();
 
 			foreach(var fornecedor in lista)
             {
@@ -121,7 +121,7 @@ namespace GESTAO_FORNECEDOR
 			Console.WriteLine("Informe o ID do Fornecedor a ser consultado");
 			int idForn = int.Parse(Console.ReadLine());
 
-			var fornecedor = repositorio.RetornaPorId(idForn);
+			var fornecedor = Fornecedor.fornecedor.RetornaPorId(idForn);
 			Console.WriteLine(fornecedor);
         }
 
