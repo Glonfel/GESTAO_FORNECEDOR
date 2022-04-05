@@ -5,18 +5,6 @@ using System.Data;
 
 string opcaoUsuario = ObterOpcaoUsuario();
 
-MySqlConnection conexao = new MySqlConnection();
-MySqlCommand sqlCmd = new MySqlCommand();
-DataTable sqlDt = new DataTable();
-string sqlQuery;
-MySqlDataAdapter adapter = new MySqlDataAdapter();
-string server = "localhost";
-string username = "root";
-string password = "";
-string database = "gestao_fornecedor";
-
-DataSet DS = new DataSet();
-
 while (opcaoUsuario.ToUpper() != "X")
 {
     switch(opcaoUsuario)
@@ -31,8 +19,8 @@ while (opcaoUsuario.ToUpper() != "X")
             Fornecedor.Consultar();
             break;
         case "4":
-            Console.WriteLine("Teste conexão");
-            conectar();
+            //Console.WriteLine("Teste conexão");
+            //conectar();
             break;
         default:
             throw new ArgumentOutOfRangeException();
@@ -42,19 +30,7 @@ while (opcaoUsuario.ToUpper() != "X")
 
 void conectar()
 {
-      try
-      {
-          conexao.ConnectionString = "server=" + server + ";" + "user id=" + username + ";" + "password=" + password + ";" + "database=" + database;
-          conexao.Open();
-          sqlCmd.Connection = conexao;
-         // sqlCmd.CommandText = "SELECT * FROM gestao_fornecedor;";
-          Console.WriteLine("Conectado!");
-          conexao.Close();
-      }
-      catch (Exception)
-      {
-          Console.WriteLine("Problema ao conectar!");
-      }
+      
 }
 
 
